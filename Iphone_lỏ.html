@@ -1,0 +1,2605 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Iphone Lỏ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #353535;
+            user-select: none;
+            margin-bottom: 60px;
+            scale: 1;
+            touch-action: none;
+        }
+
+        .phone {
+            width: 330px;
+            height: 700px;
+            border: 3px solid #030303;
+            border-radius: 53px;
+            background: #000000;
+            position: relative;
+            overflow: hidden;
+            z-index: 46;
+            transform: scale(0.9);
+            touch-action: auto;
+        }
+        .area-thanh {
+            position: absolute;
+            height: 750px;
+            background: transparent;
+            transform: scale(0.9);
+            touch-action: none;
+            z-index: 47;
+        }
+
+        .wallpaper {
+            width: 100%;
+            height: 100%;
+            background: url("https://anhnail.com/wp-content/uploads/2024/10/Hinh-gai-xinh-k8-cute.jpg") no-repeat center center fixed;
+            background-size: 100%;
+            scale: 100%;
+            transition: all 0.6s cubic-bezier(0.23, 0.55, 0.54, 0.97);
+            border-radius: 50px;
+        }
+
+        .wallpaper.open {
+            scale: 110%;
+            filter: blur(5px);
+        }
+        .wallpaper.lock {
+            height: 50%;
+            scale: 40%;
+            filter: blur(0px);
+            border-radius: 0px;
+        }
+        .music-app {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            font-family: -apple-system, sans-serif;
+            width: 100%;
+            height: 80%;
+        }
+
+        .cover {
+            width: 200px;
+            height: 200px;
+            border-radius: 20px;
+            object-fit: cover;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+
+        .artist {
+            font-size: 14px;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .controls button {
+            background-color: #007aff;
+            color: white;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        
+
+        .circle {
+            width: 30px;
+            height: 30px;
+            background-color: #474747;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transform: translateY(40%) translateX(50%);
+            font-size: 17px;
+            font-weight: bold;
+            font-family: "Atkinson Hyperlegible", sans-serif;
+            text-align: center;
+        }
+        .gallery-app {
+            padding: 20px;
+            background: black;
+            color: white;
+            font-family: -apple-system, sans-serif;
+            height: 100%;
+            overflow-y: auto;
+        }
+
+        .gallery-app h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 8px;
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            border-radius: 10px;
+            object-fit: cover;
+            aspect-ratio: 1 / 1;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .gallery-grid img:hover {
+            transform: scale(1.1);
+        }
+
+
+        .left-text {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            font-size: 19px;
+            top: 35%;
+            left: 15px;
+            transform: translateY(-50%);
+            z-index: 4884;
+            font-family: 'Noto sans', sans-serif;
+        }
+
+        .left-text-small {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            font-size: 11px;
+            top: 70%;
+            left: 15px;
+            transform: translateY(-50%);
+            z-index: 4884;
+            color: #a2a2a2;
+            font-family: 'Noto sans', sans-serif;
+        }
+
+        .box13,
+        .box12,
+        .box11,
+        .box10,
+        .box9,
+        .box8,
+        .box7,
+        .box6,
+        .box5,
+        .box4,
+        .box3,
+        .box2,
+        .box1 {
+            position: absolute;
+            overflow: hidden;
+            border-radius: 20px;
+            width: 60px;
+            bottom: 35px;
+            height: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            transform: translateX(0%) translateY(0%) scale(1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 12;
+        }
+
+        .box4.lock {
+            opacity: 0.2;
+            transform: translateX(40px) translateY(250px) scale(1.4);
+        }
+        .box3.lock {
+            opacity: 0.2;
+            transform: translateX(13px) translateY(250px) scale(1.4);
+        }
+        .box2.lock{
+            opacity: 0.2;
+            transform: translateX(-13px) translateY(250px) scale(1.4);
+        }
+        .box1.lock {
+            opacity: 0.2;
+            transform: translateX(-40px) translateY(250px) scale(1.4);
+        }
+        .box5.lock {
+            opacity: 0.2;
+            transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(120px) translateY(200px) scale(1.3);
+        }
+        .box6.lock {
+            opacity: 0.2;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(40px) translateY(170px) scale(1.3);
+        }
+        .box7.lock{
+            opacity: 0.2;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-40px) translateY(170px) scale(1.3);
+        }
+        .box8.lock {
+            opacity: 0.2;
+            transition: all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-120px) translateY(200px) scale(1.3);
+        }
+        .box9.lock {
+            opacity: 0.2;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-70px) translateY(20px) scale(1.7);
+        }
+        .box10.lock{
+            opacity: 0.2;
+            transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(70px) translateY(20px) scale(1.7);
+        }
+        .box11.lock {
+            opacity: 0.2;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(0px) translateY(-200px) scale(1.4);
+        }
+
+        .box1,
+        .box9,
+        .box11,
+        .box8 {
+            left: 10%;
+        }
+        .box2,
+        .box7 {
+            left: 30.5%;
+        }
+        .box3,
+        .box10,
+        .box6{
+            left: 51.3%;
+        }
+        .box5,
+        .box4 {
+            left: 71.7%;
+        }
+        .box1 {
+            background-color: #3e4043;
+        }
+        .box2 {
+            background-color: rgb(255, 196, 0);
+        }
+        .box3 {
+            background-color: rgba(235, 68, 96, 1);
+        }
+        .box4 {
+            background-color: #eaeaea;
+        }
+        .box5 {
+            background-color: #fdfdfd;
+            bottom: 150px;
+        }
+        .box6 {
+            background-color: #ffffff;
+            bottom: 150px;
+        }
+        .box7 {
+            background-color: #fefefe;
+            bottom: 150px;
+        }
+        .box8 {
+            background-color: #00cd88;
+            bottom: 150px;
+        }
+        .box9{
+            background-color: #fefdfc;
+            width: 129px;
+            bottom: 220px;
+        }
+        .box10{
+            background-color: #fefdfd;
+            width: 129px;
+            bottom: 220px;
+        }
+        .box11{
+            position: relative;
+            background-color: #fefdfd00;
+            width: 260px;
+            height: 135px;
+            top: 70px;
+        }
+        .sms-app {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 92%;
+            background-color: black;
+            font-family: -apple-system, sans-serif;
+            color: white;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+
+        .messages {
+            flex: 1;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .bubble {
+            max-width: 75%;
+            padding: 10px 14px;
+            border-radius: 20px;
+            font-size: 15px;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        .bubble.left {
+            align-self: flex-start;
+            background-color: #3a3a3c;
+            border-top-left-radius: 4px;
+        }
+
+        .bubble.right {
+            align-self: flex-end;
+            background-color: #007aff;
+            border-top-right-radius: 4px;
+            color: white;
+        }
+
+        .input-bar {
+            display: flex;
+            gap: 10px;
+            padding: 10px 0 0;
+            border-top: 1px solid #333;
+        }
+
+        .input-bar input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            background: #1c1c1e;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .input-bar button {
+            background-color: #007aff;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            padding: 10px 16px;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+
+
+        
+        .box11.open {
+            width: 330px;
+            height: 701px;
+            top: 0;
+            left: 0%;
+            border-radius: 50px;
+            transform: scale(1.074);
+        }
+        .box5.open,
+        .box10.open,
+        .box9.open, 
+        .box8.open,
+        .box7.open,
+        .box6.open,
+        .box1.open,
+        .box2.open,
+        .box3.open,
+        .box4.open {
+            width: 330px;
+            height: 701px;
+            bottom: 0;
+            left: 0%;
+            border-radius: 50px;
+            transform: scale(1.074);
+        }
+
+        .box11::before,
+        .box10::before,
+        .box9::before,
+        .box8::before,
+        .box7::before,
+        .box6::before,
+        .box5::before,
+        .box2::before,
+        .box3::before,
+        .box4::before,
+        .box1::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            transition: all 0.3s ease;
+            z-index: 0;
+            border-radius: 20px;
+            opacity: 1;
+        }
+
+        .box1::before {
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQrlI2WJGoJfbmOIWk3OKMxqaC3-mZneqb9A&s") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box2::before {
+            background: url("data:image/jpeg;base64,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") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box3::before {
+            background: url("https://a0.anyrgb.com/pngimg/1490/294/videomaker-magazine-video-downloader-carol-service-video-icon-freemake-freemake-video-downloader-video-production-footage-video-editing-movies.png") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box4::before {
+            background: url("https://cdn0.iconfinder.com/data/icons/apple-apps/100/Apple_Settings-512.png") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box5::before {
+            background: url("https://a0.anyrgb.com/pngimg/678/1856/ios-icon-apple-id-messages-facetime-imessage-messaging-apps-instant-messaging-message-app-store-text-messaging.png") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box6::before {
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTDKd1vrUjzNKeH8NnJZL3ta8iVrFxbBTtWmw&s") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box7::before {
+            background: url("https://p1.hiclipart.com/preview/114/880/42/ios-7-alt-icons-calendar-png-icon.jpg") no-repeat center/cover;
+            background-size: 115%;
+        }
+
+        .box8::before {
+            background: url("https://i.pinimg.com/736x/84/4e/8c/844e8cd4ab26c82286238471f0e5a901.jpg") no-repeat center/cover;
+            background-size: 115%;
+        }
+        .box9::before {
+            background: url("https://w7.pngwing.com/pngs/827/87/png-transparent-square-analog-clock-illustration-at-9-41-angle-area-alarm-clock-home-accessories-circle-clock-angle-number-mobile-phones-thumbnail.png") no-repeat center/cover;
+            background-size: 53%;
+        }
+        .box10::before {
+            background: url("https://img.favpng.com/16/23/17/computer-icons-ios-7-apple-compass-png-favpng-bn6eqPKyxVRPAM3CXs2HqNf6g.jpg") no-repeat center/cover;
+            background-size: 53%;
+        }
+        .box11::before {
+            background: #ffffff00;
+            background-size: 53%;
+        }
+
+        .box11.hien::before,
+        .box10.hien::before,
+        .box9.hien::before,
+        .box8.hien::before,
+        .box7.hien::before,
+        .box6.hien::before,
+        .box5.hien::before,
+        .box4.hien::before,
+        .box3.hien::before,
+        .box2.hien::before,
+        .box1.hien::before {
+            opacity: 1;
+        }
+        .phone-app {
+            color: white;
+            background-color: black;
+            padding: 20px;
+            font-family: -apple-system, sans-serif;
+            text-align: center;
+        }
+
+        .number-display {
+            font-size: 32px;
+            margin-bottom: 20px;
+            background: #1c1c1e;
+            padding: 15px;
+            border-radius: 10px;
+            word-break: break-word;
+        }
+
+        .keypad {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: #000;
+            color: white;
+            z-index: 999999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease;
+            pointer-events: auto;
+        }
+
+        .apple-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 30px;
+            filter: invert(1); /* Chuyển logo sang trắng nếu là svg đen */
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .boot-text {
+            font-size: 18px;
+            margin: 5px;
+            opacity: 0.8;
+        }
+
+        .boot-text.small {
+            font-size: 14px;
+            opacity: 0.5;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+
+        .keypad button {
+            background-color: #2c2c2e;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            padding: 10px;
+            width: 100%;
+            height: 70px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .keypad button small {
+            font-size: 12px;
+            display: block;
+            color: #aaa;
+        }
+
+        .keypad button.call {
+            background-color: #30d158;
+            font-size: 28px;
+        }
+
+
+        .clicke11,
+        .clicke10,
+        .clicke9,
+        .clicke8,
+        .clicke7,
+        .clicke6,
+        .clicke5,
+        .clicke1,
+        .clicke2,
+        .clicke3,
+        .clicke4 {
+            position: absolute;
+            background-color: #009e5400;
+            height: 60px;
+            width: 60px;
+            font-size: 24px;
+            font-weight: bold;
+            color: transparent;
+            cursor: pointer;
+            z-index: 345;
+            outline: none;
+            user-select: none;
+            -webkit-user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .clicke1 {
+            bottom: 35px;
+            left: 10%;
+            height: 80px;
+        }
+
+        .clicke2 {
+            bottom: 35px;
+            left: 30.5%;
+            height: 80px;
+        }
+
+        .clicke3 {
+            bottom: 35px;
+            right: 30.5%;
+            height: 80px;
+        }
+
+        .clicke4 {
+            bottom: 35px;
+            right: 10%;
+            height: 80px;
+        }
+
+        .clicke5 {
+            bottom: 150px;
+            right: 10%;
+        }
+
+        .clicke6 {
+            bottom: 150px;
+            right: 30.5%;
+        }
+
+        .clicke7 {
+            bottom: 150px;
+            left: 30.5%;
+        }
+
+        .clicke8 {
+            bottom: 150px;
+            left: 10%;
+        }
+        .clicke9 {
+            bottom: 220px;
+            width: 129px;
+            left: 10%;
+        }
+        .clicke10 {
+            bottom: 220px;
+            right: 10%;
+            width: 129px;
+        }
+        .clicke11 {
+            top: 70px;
+            left: 10%;
+            height: 135px;
+            width: 260px;
+        }
+
+        .thanh {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 330px;
+            height: 60px;
+            background: #77000000;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            line-height: 40px;
+            user-select: none;
+            cursor: grab;
+            transform: translateX(-50%);
+            z-index: 2020;
+            display: none;
+            touch-action: auto;
+        }
+        .thanh-status {
+            position: absolute;
+            top: 0;
+            right: 50%;
+            transform: translateX(50%);
+            width: 330px;
+            height: 65px;
+            background: #77000000;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            line-height: 40px;
+            user-select: none;
+            cursor: grab;
+            z-index: 2020;
+            display: flex;
+            touch-action: auto;
+        }
+        .thanh-status2 {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            width: 330px;
+            height: 40px;
+            background: #26770000;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            line-height: 40px;
+            user-select: none;
+            cursor: grab;
+            z-index: 2020;
+            display: flex;
+            touch-action: auto;
+        }
+
+        .thanh.open {
+            display: block;
+        }
+
+        .nav {
+            position: fixed;
+            bottom: 4px;
+            left: 50%;
+            width: 30px;
+            height: 1px;
+            opacity: 0;
+            background: #ffffff;
+            border-radius: 20px;
+            text-align: center;
+            user-select: none;
+            cursor: grab;
+            transform: translateX(-50%);
+            z-index: 200;
+            transition: all 0.3s;
+            z-index: 500;
+        }
+
+        .nav.open {
+            width: 130px;
+            height: 6px;
+            opacity: 1;
+        }
+
+        .lp {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 200;
+            backdrop-filter: blur(0px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .lp.open {
+            opacity: 0;
+        }
+
+        .khayapp {
+            position: absolute;
+            background-color: #ffffff65;
+            border-radius: 30px;
+            width: 287px;
+            bottom: 25px;
+            height: 80px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            left: 50%;
+            transform: translateX(-50%) translateY(0%) scale(1);
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            z-index: 4;
+        }
+        .khayapp.lock{
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform: translateX(-50%) translateY(200px) scale(1.5);
+        }
+
+        /* lock */
+
+        .lockscreen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 330px;
+            height: 700px;
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            transition: all 0.3s;
+            background: transparent;
+            scale: 1;
+            opacity: 1;
+            pointer-events: auto; 
+        }
+
+        .lock-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(173, 216, 230, 0);
+            border-radius: 53px;
+        }
+
+        .lock-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            user-select: none;
+            font-weight: 600;
+        }
+
+        .lock-clock {
+            display: fixed;
+            position: absolute;
+            font-size: 100px;
+            line-height: 90px;
+            font-weight: 600;
+            top: 120px;
+            user-select: none;
+            font-weight: bold;
+            font-family: "Abril Fatface", serif;
+            transform: scale(1) translateY(0px);
+            transition: all 0.6s cubic-bezier(0.23, 0.55, 0.54, 0.97);
+        }
+
+        .lock-clock.tat {
+            transform: scale(0.95) translateY(160px);
+        }
+
+        .date-display {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            font-size: 19px;
+            top: 95px;
+            left: 50%;
+            transform: translateX(-50%) translateY(0px);
+            scale: 1;
+            transform-origin: center;
+            z-index: 4884;
+            font-family: 'Noto sans', sans-serif;
+            transition: all 0.6s cubic-bezier(0.23, 0.55, 0.54, 0.97);
+        }
+
+        .date-display.tat {
+            transform: translateY(165px) translateX(-52%);
+            scale: 0.95;
+        }
+
+        .lock-fingerprint {
+            display: fixed;
+            position: absolute;
+            bottom: 50px;
+            width: 60px;
+            height: 60px;
+            border: 5px solid #ffffff;
+            border-radius: 100px;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s;
+        }
+
+        .lock-fingerprint:hover {
+            transform: scale(0.9);
+        }
+
+        .lock-fingerprint.hidden {
+            opacity: 0;
+        }
+
+        .off {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgb(0, 0, 0);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.2s ease-out;
+        }
+
+        .off.hien {
+            opacity: 1;
+        }
+
+        .power-button {
+            position: absolute;
+            display: fixed;
+            top: 35%;
+            left: calc(100% - 16px);
+            transform: translateY(0%);
+            width: 10px;
+            height: 80px;
+            background-color: #ff1313;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.2s;
+            z-index: 633426;
+            pointer-events: auto; 
+        }
+        .power-button.hidden{
+            pointer-events: none; 
+        }
+
+        .app1,
+        .app2,
+        .app3,
+        .app4main,
+        .app4about,
+        .app4,
+        .app5,
+        .app6,
+        .app7,
+        .app8,
+        .app9,
+        .app10,
+        .app11,
+        .app12 {
+            position: absolute;
+            display: flex;
+            background: #eaeaea;
+            width: 90%;
+            width: 330px;
+            height: 701px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            left: 50%;
+            transform: translateX(-50%) translateY(-30%) scale(1);
+            transform-origin: center;
+            top: 00px;
+            z-index: 442;
+            transition: all 0.4s;
+            opacity: 0;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-family: 'Noto sans', sans-serif;
+        }
+
+        .app1.open,
+        .app2.open,
+        .app3.open,
+        .app4.open,
+        .app5.open,
+        .app6.open,
+        .app7.open,
+        .app8.open,
+        .app9.open,
+        .app10.open,
+        .app11.open,
+        .app12.open {
+            opacity: 1;
+            transform: translateX(-50%) scale(1);
+        }
+
+        .khaysetting1,
+        .khaysetting2,
+        .khaysetting {
+            position: absolute;
+            display: fixed;
+            border-radius: 20px;
+            background: #ffffff;
+            background-size: 105%;
+            width: 90%;
+            height: 55px;
+            top: 300px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px) scale(1);
+            z-index: 443;
+            text-align: center;
+        }
+
+        .khaysetting2 {
+            top: 360px;
+        }
+
+        .khaysetting1 {
+            top: 160px;
+        }
+
+        .click-area {
+            position: absolute;
+            display: fixed;
+            border-radius: 20px;
+            background: #3c03038d;
+            background-size: 105%;
+            width: 90%;
+            height: 55px;
+            top: 160px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            left: 50%;
+            transform: translateX(-50%) translateY(40px) scale(1);
+            z-index: 555;
+            text-align: center;
+        }
+
+        .originos {
+            position: absolute;
+            display: fixed;
+            border-radius: 20px;
+            background: url("https://raw.githubusercontent.com/quandz24-ui/one-ui-7/refs/heads/main/OriginOS_setting.jpg") no-repeat center center fixed;
+            background-size: 105%;
+            width: 90%;
+            height: 200px;
+            bottom: 35px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: default;
+            left: 50%;
+            top: 100px;
+            transform: translateX(-50%) translateY(0%) scale(1);
+            z-index: 442;
+        }
+
+        .status-time-widget {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            top: 50%;
+            left: 47%;
+            transform: translate(-50%, -50%);
+            color: rgb(42, 42, 42);
+            font-size: 100px;
+            z-index: 100;
+            font-family: 'Abril Fatface', sans-serif;
+            font-weight: 600;
+            z-index: 20000;
+            transition: all 0.3s;
+            opacity: 1;
+            scale: 0.9;
+        }
+        .status-time {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            top: 10px;
+            left: 30px;
+            color: rgb(42, 42, 42);
+            font-size: 17px;
+            z-index: 100;
+            font-family: 'Noto sans', sans-serif;
+            font-weight: 600;
+            z-index: 20000;
+            transition: all 0.3s;
+            opacity: 00;
+            scale: 0.9;
+        }
+        .status-time.hien{
+            opacity: 1;
+        }
+        .status-time.open{
+            color: rgb(255, 255, 255);
+        }
+        .status-battery {
+            position: absolute;
+            top: 15px;
+            right: 30px;
+            width: 33px;
+            height: 18px;
+            border: 2px solid rgb(42, 42, 42);
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 2px;
+            background: rgba(255, 255, 255, 0);
+            box-sizing: border-box;
+            position: absolute;
+            z-index: 100;
+            font-weight: bold;
+            font-family: 'Noto sans', sans-serif;
+            font-size: 80%;
+            color: rgb(42, 42, 42);
+            z-index: 12323;
+            transition: all 0.3s;
+            scale: 0.9;
+        }
+        .battery-small.close{
+            background: rgb(255, 255, 255);
+        }
+        .status-battery.close{
+            border: 2px solid rgb(255, 255, 255);
+            right: 35px;
+        }
+        .battery-small {
+            position: absolute;
+            left: 102%;
+            width: 3px;
+            height: 8px;
+            border-radius: 100px;
+            display: flex;
+            background: rgb(42, 42, 42);
+            transition: all 0.3s;
+        }
+        .battery-small2 {
+            position: absolute;
+            right: 80%;
+            width: 4px;
+            height: 10px;
+            border-radius: 3px;
+            display: flex;
+            background: rgb(255, 0, 0);
+        }
+        .battery-num{
+            z-index: 1;
+            color: rgb(42, 42, 42);
+            transition: all 0.3s;
+        }
+        .battery-num.close{
+            color: rgb(255, 255, 255);
+        }
+        .camera {
+            transform: translateX(-50%);
+            position: absolute;
+            display: fixed;
+            top: 10px;
+            left: 50%;
+            height: 30px;
+            width: 120px;
+            border-radius: 20px;
+            background-color: #000000;
+            z-index: 1231673;
+        }
+        .lp2 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(0, 0, 0, 0.295);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 199;
+            backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .lp2.open {
+            opacity: 1;
+        }
+        .left-text-tb {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            font-size: 18px;
+            top: 150px;
+            left: 35px;
+            transform: translateY(0%);
+            z-index: 20000;
+            font-weight: 400;
+            color: #ffffff;
+            font-family: 'Noto sans', sans-serif;
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.23, 0.55, 0.54, 0.97);
+        }
+        .left-text-tb.open{
+            font-size: 20px;
+            top: 120px;
+            left: 35px;
+            opacity: 1;
+        }
+        .date-display2 {
+            position: absolute;
+            flex-grow: 1;
+            display: flex;
+            justify-content: none;
+            font-size: 19px;
+            top: 95px;
+            left: 0;
+            transform: translateX(0%) translateY(0px);
+            scale: 1;
+            transform-origin: center;
+            z-index: 4884;
+            font-family: 'Noto sans', sans-serif;
+            transition: all 0.3s ease-out;
+        }
+        .allApp {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            background: none;
+            transform: scale(1);
+            transition: all 0.6s cubic-bezier(.07,1.33,1,1);
+            z-index: 3;
+            scale: 1;
+        }
+
+        .allApp.open {
+            transform: scale(0.93);
+        }
+
+        .allApp.lock {
+            transition: all 1s cubic-bezier(.07,1.33,1,1);
+            transform: scale(2.3) rotateX(10deg);
+            opacity: 0;
+        }
+            /* Màn hình loading */
+    #loading-screen {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-45%);
+      width: 100vw;
+      height: 100vh;
+      background: #353535;
+      z-index: 999999;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      transition: opacity 0.3s ease;
+      pointer-events: auto;
+    }
+
+    .spinner {
+      width: 40px;
+      height: 40px;
+      border: 4px solid #ccc;
+      border-top-color: #007bff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    p {
+      height: 0px;
+      font-size: 15px;
+      font-weight: 900;
+      font-family: 'Noto sans', sans-serif;
+      color: #ffffff;
+    }
+      .ios-settings {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, sans-serif;
+    background-color: #000;
+    color: white;
+    padding: 20px;
+    }
+
+    .title {
+        font-size: 32px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .profile {
+        display: flex;
+        align-items: center;
+        background-color: #1c1c1e;
+        padding: 15px;
+        border-radius: 12px;
+        margin-bottom: 10px;
+    }
+
+    .avatar {
+        width: 50px;
+        height: 50px;
+        background-color: gray;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 50px;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+
+    .info .name {
+        font-size: 18px;
+        font-weight: 500;
+    }
+
+    .info .desc {
+        font-size: 14px;
+        color: #aaa;
+    }
+
+    .warning {
+        font-size: 13px;
+        color: #ff3b30;
+        margin: 10px 0 20px 10px;
+    }
+
+    .section {
+        background-color: #1c1c1e;
+        border-radius: 12px;
+        margin-bottom: 20px;
+        overflow: hidden;
+    }
+
+    .item {
+        padding: 15px 20px;
+        border-bottom: 1px solid #2c2c2e;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 16px;
+        transition: background 0.2s;
+    }
+
+    .item:last-child {
+        border-bottom: none;
+    }
+
+    .item:hover {
+        background-color: #2c2c2e;
+    }
+
+    .right {
+        color: #aaa;
+        font-size: 14px;
+    }
+    .calculator {
+        width: 100%;
+        padding: 20px;
+        background: black;
+        box-sizing: border-box;
+    }
+
+    .display {
+        background: #1c1c1e;
+        color: white;
+        font-size: 40px;
+        text-align: right;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        min-height: 60px;
+        overflow-x: auto;
+    }
+
+    .buttons {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+    }
+
+    button {
+        font-size: 24px;
+        padding: 20px;
+        border-radius: 12px;
+        border: none;
+        background-color: #2c2c2e;
+        color: white;
+        cursor: pointer;
+        transition: 0.1s;
+    }
+
+    button.orange {
+        background-color: #ff9500;
+        color: white;
+    }
+
+    button.gray {
+        background-color: #505050;
+        color: white;
+    }
+
+    button.wide {
+        grid-column: span 2;
+    }
+
+    .calendar-app {
+        padding: 20px;
+        background: black;
+        color: white;
+        font-family: -apple-system, sans-serif;
+        text-align: center;
+    }
+
+    .calendar-header {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .calendar-grid {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        gap: 6px;
+    }
+
+    .calendar-grid div {
+        padding: 10px;
+        background: #1c1c1e;
+        border-radius: 8px;
+        font-size: 16px;
+        text-align: center;
+        cursor: pointer;
+    }
+
+    .calendar-grid .today {
+        background: #ff3b30;
+        font-weight: bold;
+        color: white;
+    }
+.compass-app {
+  background: black;
+  color: white;
+  font-family: -apple-system, sans-serif;
+  padding: 30px;
+  text-align: center;
+  width: 100%;
+  height: 80%;
+}
+
+.compass {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin: auto;
+  border: 4px solid #555;
+  border-radius: 50%;
+  background: #1c1c1e;
+}
+
+.needle {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 4px;
+  height: 80%;
+  background: red;
+  transform-origin: bottom center;
+  transform: rotate(0deg);
+  transition: transform 0.4s ease-out;
+}
+
+.center-dot {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  margin-left: -4px;
+  background: white;
+  border-radius: 50%;
+}
+
+.directions span {
+  position: absolute;
+  font-weight: bold;
+  font-size: 16px;
+  color: white;
+}
+
+.north { top: 5px; left: 50%; transform: translateX(-50%); }
+.south { bottom: 5px; left: 50%; transform: translateX(-50%); }
+.east  { right: 5px; top: 50%; transform: translateY(-50%); }
+.west  { left: 5px; top: 50%; transform: translateY(-50%); }
+
+.degree {
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.compass-app button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007aff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+    </style>
+</head>
+
+<body>
+
+  <div id="loading-screen">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg" class="apple-logo" />
+  <div class="boot-texts">
+    <p>iOS lỏ 16.1111111</p>
+    <p class="small">by: Hanniee</p>
+    <p class="small">Tài 11D7</p>
+  </div>
+</div>
+
+
+
+
+
+    <div class="area-thanh">
+        <div class="thanh" id="thanh"></div>
+        <div class="thanh-status" id="thanh-status"></div>
+    </div>
+    <div class="phone">
+        <div class="lp2" id="lp2"></div>
+        <div class="left-text-tb" id="left-text-tb">notification center</div>
+        
+        <div class="thanh-status2" id="thanh-status2"></div> 
+        <div class="status-battery">
+            <div class="battery-small"></div>
+            <div class="battery-small2"></div>
+            <div class="battery-num" id="batery-num">20</div>
+        </div>
+        <div class="camera"></div>
+        <div class="status-time" id="lockclock2"><div class="date-display2" id="dateText2"></div></div>
+        <div class="off" id="off"></div>
+        <div class="allApp" id="allApp">
+            <div class="khayapp"></div>
+            <div class="box1" id="box1">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app1" id="app1">
+                    <div class="calculator">
+                    <div class="display" id="display">0</div>
+                    <div class="buttons">
+                        <button onclick="press('C')" class="gray">C</button>
+                        <button onclick="press('←')" class="gray">←</button>
+                        <button onclick="press('%')" class="gray">%</button>
+                        <button onclick="press('/')" class="orange">÷</button>
+
+                        <button onclick="press('7')">7</button>
+                        <button onclick="press('8')">8</button>
+                        <button onclick="press('9')">9</button>
+                        <button onclick="press('*')" class="orange">×</button>
+
+                        <button onclick="press('4')">4</button>
+                        <button onclick="press('5')">5</button>
+                        <button onclick="press('6')">6</button>
+                        <button onclick="press('-')" class="orange">−</button>
+
+                        <button onclick="press('1')">1</button>
+                        <button onclick="press('2')">2</button>
+                        <button onclick="press('3')">3</button>
+                        <button onclick="press('+')" class="orange">+</button>
+
+                        <button onclick="press('0')" class="wide">0</button>
+                        <button onclick="press('.')">.</button>
+                        <button onclick="calculate()" class="orange">=</button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box2" id="box2">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app2" id="app2">none</div>
+            </div>
+            <div class="box3" id="box3">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app3" id="app3">
+                    <div class="music-app">
+                    <img src="https://i.imgur.com/qn6E4Gt.jpg" alt="cover" class="cover" />
+                    <h2 class="title">Buồn hay Vui</h2>
+                    <p class="artist">Sơn Tùng M-TP</p>
+
+                    <audio id="audio" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+
+                    <div class="controls">
+                        <button onclick="togglePlay()" id="playBtn">▶️</button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box4" id="box4">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <!--<div class="app4main" id="app4main">
+                    <div class="left-text" style="left:50%; top: 80px; font-size: 30px; transform: translateX(-50%);">Setting</div>
+                    <div class="khaysetting1" >
+                        <div class="circle">i</div>
+                        <div class="left-text" style="left: 60px;">About</div>
+                        <div class="left-text-small" style="left: 60px;">OS	&middot; information</div>
+                    </div>
+                    <div class="click-area" id="khaysetting1"></div>
+                </div>-->>
+                <div class="app4" id="app4">
+                    <div class="ios-settings">
+                    <h2 class="title">Cài đặt</h2>
+
+                    <div class="profile">
+                        <div class="avatar">TT</div>
+                        <div class="info">
+                        <div class="name"> Hanniee</div>
+                        <div class="desc">Tài khoản Apple, iCloud, v.v.</div>
+                        </div>
+                    </div>
+
+                    <div class="warning">Dung Lượng iCloud gần đây 🔴</div>
+
+                    <div class="section">
+                        <div class="item">✈️ Chế độ máy bay</div>
+                        <div class="item">📶 Wi-Fi <span class="right">Không kết nối</span></div>
+                        <div class="item">🔵 Bluetooth <span class="right">Bật</span></div>
+                        <div class="item">📱 Di động</div>
+                        <div class="item">🔗 Điểm truy cập cá nhân <span class="right">Tắt</span></div>
+                        <div class="item">🔋 Pin</div>
+                    </div>
+
+                    <div class="section">
+                        <div class="item">⚙️ Cài đặt chung</div>
+                        <div class="item">🧏 Trợ năng</div>
+                        <div class="item">📷 Camera</div>
+                        <div class="item">🕓 Chế độ chờ</div>
+                        <div class="item">🖼️ Hình nền</div>
+                    </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+            <div class="box5" id="box5">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app5" id="app5">
+                    <div class="sms-app">
+                    <div class="messages" id="messages">
+                        <div class="bubble left">Chào bạn!</div>
+                        <div class="bubble right">Ừ, chào bạn 😄</div>
+                        <div class="bubble left">Tối nay rảnh không?</div>
+                        <div class="bubble right">Có nhé, đi chơi không?</div>
+                    </div>
+                    <div class="input-bar">
+                        <input type="text" id="smsInput" placeholder="iMessage" />
+                        <button onclick="sendSms()">Gửi</button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box6" id="box6">
+                <div class="nav" style="background: #1f1f1f; "></div>
+                <div class="app6" id="app6">
+                    <div class="gallery-app" style="display: flex; flex-direction: column; margin-top: 40px;">
+                    <h2 style="height: 23px; margin-bottom: 10px; font-size: 20px; font-weight: 700;">Thư viện</h2>
+                    <div class="gallery-grid">
+                        <img src="https://anhnail.com/wp-content/uploads/2024/10/Hinh-gai-xinh-sieu-cute-de-thuong.jpg" />
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcREBcIvyR14McQsfmfE5aQnSFD65tYKRnYiQHOPQUh2JIHt3rzpGSPtxu1Cann3PjJR9wA&usqp=CAU" />
+                        <img src="https://anhnail.com/wp-content/uploads/2024/11/Hinh-gai-xinh-2009-toc-dai-cute.jpg" />
+                        <img src="https://anhnail.com/wp-content/uploads/2024/10/Hinh-gai-xinh-k8-cute.jpg" />
+                        <img src="https://anhnail.com/wp-content/uploads/2024/10/Hinh-gai-xinh-k8-sieu-cute.jpg" />
+                        <img src="https://hoseiki.vn/wp-content/uploads/2025/03/gai-xinh-tu-suong-28.jpg" />
+                        <img src="https://i.pinimg.com/236x/86/84/99/86849922ac2ddc9223897abce598e786.jpg" />
+                        <img src="https://i.pinimg.com/236x/b9/b0/e1/b9b0e1e9cc219d96ccf49066bfb900b0.jpg" />
+                        <img src="https://i.pinimg.com/736x/12/33/98/123398b1e91ad2929f14dc007cad1048.jpg" />
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box7" id="box7">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app7" id="app7">
+                    <div class="calendar-app">
+                    <div class="calendar-header">
+                        <span id="monthYear"></span>
+                    </div>
+                    <div class="calendar-grid" id="calendarGrid"></div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box8" id="box8">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app8" id="app8" style="padding-bottom: 20px ;">
+                    <div class="phone-app" style="width: 100%; height: 70%; padding-bottom: 20px; background-color: #ffffff;">
+                    <div class="number-display" id="phoneDisplay">0123</div>
+                    <div class="keypad">
+                        <button onclick="pressKey('1')">1</button>
+                        <button onclick="pressKey('2')">2<br><small>ABC</small></button>
+                        <button onclick="pressKey('3')">3<br><small>DEF</small></button>
+
+                        <button onclick="pressKey('4')">4<br><small>GHI</small></button>
+                        <button onclick="pressKey('5')">5<br><small>JKL</small></button>
+                        <button onclick="pressKey('6')">6<br><small>MNO</small></button>
+
+                        <button onclick="pressKey('7')">7<br><small>PQRS</small></button>
+                        <button onclick="pressKey('8')">8<br><small>TUV</small></button>
+                        <button onclick="pressKey('9')">9<br><small>WXYZ</small></button>
+
+                        <button onclick="deleteDigit()">⌫</button>
+                        <button onclick="pressKey('0')">0</button>
+                        <button class="call" onclick="makeCall()">📞</button>
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box9" id="box9">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app9" id="app9">none5</div>
+            </div>
+            <div class="box10" id="box10">
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app10" id="app10">
+                    <div class="compass-app">
+                    <div class="compass">
+                        <div class="needle" id="needle"></div>
+                        <div class="center-dot"></div>
+                        <div class="directions">
+                        <span class="north">N</span>
+                        <span class="south">S</span>
+                        <span class="east">E</span>
+                        <span class="west">W</span>
+                        </div>
+                    </div>
+                    <div class="degree" id="degree">0°</div>
+                    <button onclick="rotateCompass()">Xoay</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="box11" id="box11" >
+                <div class="status-time-widget" id="lockclock3">
+                    <div class="date-display" id="dateText3"></div>
+                </div>
+                <div class="nav" style="background: #1f1f1f"></div>
+                <div class="app11" id="app11"></div>
+            </div>
+        </div>
+        <div class="wallpaper">
+        </div>
+        <div class="lp" id="lp"></div>
+
+        <div class="clicke1" id="clickableBox1"></div>
+        <div class="clicke2" id="clickableBox2"></div>
+        <div class="clicke3" id="clickableBox3"></div>
+        <div class="clicke4" id="clickableBox4"></div>
+        <div class="clicke5" id="clickableBox5"></div>
+        <div class="clicke6" id="clickableBox6"></div>
+        <div class="clicke7" id="clickableBox7"></div>
+        <div class="clicke8" id="clickableBox8"></div>
+        <div class="clicke9" id="clickableBox9"></div>
+        <div class="clicke10" id="clickableBox10"></div>
+        <div class="clicke11" id="clickableBox11"></div>
+        <div class="clicke12" id="clickableBox12"></div>
+        <div class="clicke13" id="clickableBox13"></div>
+
+
+
+
+
+        <!-- Màn hình khóa -->
+        <div class="lockscreen" id="lockscreen">
+            <div class="lock-content">
+                <div class="lock-clock" id="lockclock"></div>
+                <div class="date-display" id="dateText"></div>
+            </div>
+            <div class="lock-fingerprint" id="unlock-btn"></div>
+        </div>
+    </div>
+    <div class="power-button" title="power-button"></div>
+    </div>
+
+    <script>
+        const dateElement = document.getElementById('dateText');
+        const dateElement2 = document.getElementById('dateText2');
+
+        const now = new Date();
+        const options = { weekday: 'short', month: 'short', day: 'numeric' };
+        const formatted = now.toLocaleDateString('en-US', options);
+
+        dateElement.textContent = formatted;
+        dateElement2.textContent = formatted;
+        document.getElementById("dateText3").textContent = formatted;
+
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, "0");
+            const minutes = String(now.getMinutes()).padStart(2, "0");
+            document.getElementById(
+                "lockclock"
+            ).textContent = `${hours}:${minutes}`;
+            document.getElementById(
+                "lockclock2"
+            ).textContent = `${hours}:${minutes}`;
+            document.getElementById(
+                "lockclock3"
+            ).textContent = `${hours}:${minutes}`;
+        }
+          
+        updateTime();
+        setInterval(updateTime, 10000);
+
+
+        const boxes = {
+            box1: document.getElementById("box1"),
+            box2: document.getElementById("box2"),
+            box3: document.getElementById("box3"),
+            box4: document.getElementById("box4"),
+            box5: document.getElementById("box5"),
+            box6: document.getElementById("box6"),
+            box7: document.getElementById("box7"),
+            box8: document.getElementById("box8"),
+            box9: document.getElementById("box9"),
+            box10: document.getElementById("box10"),
+            box11: document.getElementById("box11"),
+            box12: document.getElementById("box12"),
+            box13: document.getElementById("box13"),
+        };
+        boxes[`box1`].classList.add("lock");
+        boxes[`box2`].classList.add("lock");
+        boxes[`box3`].classList.add("lock");
+        boxes[`box4`].classList.add("lock");
+        boxes[`box5`].classList.add("lock");
+        boxes[`box6`].classList.add("lock");
+        boxes[`box7`].classList.add("lock");
+        boxes[`box8`].classList.add("lock");
+        boxes[`box9`].classList.add("lock");
+        boxes[`box10`].classList.add("lock");
+        boxes[`box11`].classList.add("lock");
+        document.querySelector(".khayapp").classList.add("lock");
+        const appopen = {
+            box1: document.getElementById("app1"),
+            box2: document.getElementById("app2"),
+            box3: document.getElementById("app3"),
+            box4: document.getElementById("app4"),
+            box5: document.getElementById("app5"),
+            box6: document.getElementById("app6"),
+            box7: document.getElementById("app7"),
+            box8: document.getElementById("app8"),
+            box9: document.getElementById("app9"),
+            box10: document.getElementById("app10"),
+            box11: document.getElementById("app11"),
+            box12: document.getElementById("app12"),
+            box13: document.getElementById("app13"),
+        };
+
+        const clickables = {
+            box1: document.getElementById("clickableBox1"),
+            box2: document.getElementById("clickableBox2"),
+            box3: document.getElementById("clickableBox3"),
+            box4: document.getElementById("clickableBox4"),
+            box5: document.getElementById("clickableBox5"),
+            box6: document.getElementById("clickableBox6"),
+            box7: document.getElementById("clickableBox7"),
+            box8: document.getElementById("clickableBox8"),
+            box9: document.getElementById("clickableBox9"),
+            box10: document.getElementById("clickableBox10"),
+            box11: document.getElementById("clickableBox11"),
+            box12: document.getElementById("clickableBox12"),
+            box13: document.getElementById("clickableBox13"),
+        };
+
+        const thanh = document.getElementById("thanh");
+        const WallPaper = document.querySelector(".wallpaper");
+        const lp = document.querySelector(".lp");
+        const allApp = document.getElementById("allApp");
+
+        let currentOpeningBtn = null;
+        let nav = null;
+        let isMo = false;
+        let autoHideClickablesTimer = null;
+        let closing = false;
+        let app = null;
+
+        function hideAllClickables() {
+            Object.values(clickables).forEach((el) => {
+                el.style.display = "none";
+            });
+        }
+
+        function openPopupFromCurrentButton() {
+            if (!currentOpeningBtn) return;
+            if (app) app.classList.add("open");
+            if (scale < 1) currentOpeningBtn.style.transition = "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            if (scale < 0.7) currentOpeningBtn.style.transition = "all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            WallPaper.classList.add("open");
+
+            currentOpeningBtn.classList.add("open");
+            currentOpeningBtn.classList.add("hien");
+            currentOpeningBtn.style.zIndex = "320";
+
+            setTimeout(() => {
+                currentOpeningBtn.style.transform = `translateX(0%) translateY(0%) scale(1.074)`;
+            }, 50);
+
+            thanh.classList.add("open");
+            lp.classList.add("open");
+            allApp.style.transition = "all 0.5s cubic-bezier(0.23, 0.55, 0.54, 0.97)";
+            allApp.classList.add("open");
+
+            const boxId = Object.keys(boxes).find(
+                (key) => boxes[key] === currentOpeningBtn
+            );
+            if (boxId) clickables[boxId].style.display = "none";
+
+            nav = currentOpeningBtn.querySelector(".nav");
+            if (nav) nav.classList.add("open");
+
+            isMo = true;
+        }
+
+        const scale = 1;
+
+        function closePopup() {
+            if (!currentOpeningBtn) return;
+            app.classList.remove("open");
+            currentOpeningBtn.style.transition = "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            clearTimeout(autoHideClickablesTimer);
+            closing = true;
+            setTimeout(() => {
+                closing = false;
+            }, 300);
+            currentOpeningBtn.classList.remove("open");
+            setTimeout(() => {
+                currentOpeningBtn.style.transform = `translateX(0%) translateY(0%) scale(1)`;
+                currentOpeningBtn.classList.remove("hien");
+                currentOpeningBtn = null;
+                scale = 1;
+            }, 50);
+            WallPaper.classList.remove("open");
+            lp.classList.remove("open");
+            currentOpeningBtn.style.zIndex = "5";
+
+            thanh.style.transform = "translateX(-50%)";
+            allApp.style.transition = "all 0.5s cubic-bezier(0.23, 0.55, 0.54, 0.97)";
+            allApp.classList.remove("open");
+
+            if (nav) nav.classList.remove("open");
+            isMo = false;
+
+            Object.values(clickables).forEach((el) => {
+                el.style.display = "block";
+            });
+        }
+
+        function updateTransform(y, x) {
+            if (y < 0) y = 0;
+            if (y > 200) y = 200;
+
+            const easedY = Math.sqrt(y);
+            const maxEasedY = Math.sqrt(550);
+            const ratio = easedY / maxEasedY;
+            const displayY = ratio * 170;
+            if (displayY > 100) displayY = 100;
+            const scale = 1 - y / 300 + 0.074;
+
+            currentOpeningBtn.style.transition = "all 0.1s";
+            currentOpeningBtn.style.transform = `translateX(${x}px) translateY(${-displayY}px) scale(${scale})`;
+
+            thanh.style.transition = "none";
+            thanh.style.transform = `translateX(calc(-50% + ${x}px)) translateY(${-y}px)`;
+        }
+
+        function resetpop() {
+            thanh.classList.add("open");
+            currentOpeningBtn.style.transition = "all 0.3s";
+            currentOpeningBtn.style.transform = `translateX(0%) translateY(0%) scale(1.074)`;
+            thanh.style.transform = `translateX(-50%) translateY(0%) scale(1)`;
+        }
+
+        let startY = 0;
+        let startX = 0;
+        let deltaY = 0;
+        let deltaX = 0;
+        let dragging = false;
+
+        thanh.addEventListener("touchstart", (e) => {
+            if (!isMo) return;
+            startY = e.touches[0].clientY;
+            startX = e.touches[0].clientX;
+        });
+
+        thanh.addEventListener("touchmove", (e) => {
+            e.preventDefault();
+            if (!isMo) return;
+            deltaY = startY - e.touches[0].clientY;
+            deltaX = e.touches[0].clientX - startX;
+            updateTransform(deltaY, deltaX);
+            thanh.classList.remove("open");
+        }, {
+            passive: false
+        }
+        );
+
+        thanh.addEventListener("touchend", () => {
+            if (deltaY > 40) closePopup();
+            else resetpop();
+            deltaY = 0;
+            deltaX = 0;
+        });
+
+        thanh.addEventListener("mousedown", (e) => {
+            deltaY = 0;
+            deltaX = 0;
+            startY = 0;
+            startX = 0;
+
+            if (!isMo) return;
+            dragging = true;
+            startY = e.clientY;
+            startX = e.clientX;
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!dragging || !isMo) return;
+            deltaY = startY - e.clientY;
+            deltaX = e.clientX - startX;
+            updateTransform(deltaY, deltaX);
+            thanh.classList.remove("open");
+        });
+
+        window.addEventListener("mouseup", () => {
+            if (!dragging || !isMo) return;
+            dragging = false;
+            if (deltaY > 40) closePopup();
+            else resetpop();
+        });
+
+        ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13"].forEach((num) => {
+            document.getElementById(`clickableBox${num}`).addEventListener("click", () => {
+
+                    clearTimeout(autoHideClickablesTimer);
+
+                    if (currentOpeningBtn) {
+                        Object.values(clickables).forEach((el) => {
+                            el.style.display = "block";
+                        });
+
+                        currentOpeningBtn.style.transition = "all 0.6s cubic-bezier(0.17, 0.84, 0.44, 1)";
+                        currentOpeningBtn.classList.remove("open");
+                        currentOpeningBtn.classList.remove("hien");
+
+                        app.classList.remove("open");
+                        app = appopen[`box${num}`];
+
+                        lp.style.transition = "all 0.15s";
+                        lp.classList.remove("open");
+
+                        if (nav) nav.classList.remove("open");
+
+                        setTimeout(() => {
+                            currentOpeningBtn.style.transform = `scale(1)`;
+                            currentOpeningBtn.style.zIndex = "5";
+
+                            lp.style.transition = "all 0.3s";
+                            WallPaper.classList.remove("open");
+
+                            currentOpeningBtn = boxes[`box${num}`];
+
+                            openPopupFromCurrentButton();
+                            autoHideClickablesTimer = setTimeout(() => {
+                                if (isMo) hideAllClickables();
+                            }, 570);
+                        }, 0);
+                    } else {
+                        currentOpeningBtn = boxes[`box${num}`];
+                        currentOpeningBtn.style.transition = "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+                        app = appopen[`box${num}`];
+                        openPopupFromCurrentButton();
+                        autoHideClickablesTimer = setTimeout(() => {
+                            if (isMo) hideAllClickables();
+                        }, 400);
+                    }
+                });
+        });
+
+
+        // DOM elements
+        const lockscreen = document.getElementById('lockscreen');
+        const wallpaper = document.querySelector('.wallpaper');
+        const unlockBtn = document.getElementById('unlock-btn');
+        const powerbtn = document.querySelector('.power-button');
+        const off = document.getElementById("off");
+        const fingerprint = document.querySelector(".lock-fingerprint");
+        const lockclock = document.querySelector(".lock-clock");
+        const dateText = document.getElementById("dateText");
+        const clock = document.getElementById("lockclock2");
+        const battery3 = document.querySelector(".battery-num");
+        const battery2 = document.querySelector(".battery-small");
+        const battery1 = document.querySelector(".status-battery");
+
+        let ison = true;
+        let islock = true;
+        allApp.style.transition = "all 0s";
+        allApp.classList.add("lock");
+        hideAllClickables();
+
+        //lock();
+        clock.classList.add("hien");
+
+        function lock() {
+            islock = true;
+            dongnotification()
+
+            lockscreen.style.transition = "all 0.3s";
+            lockscreen.style.opacity = 1;
+            lockscreen.style.pointerEvents = 'auto'; 
+            lockscreen.style.scale = 1;
+
+            //wallpaper.classList.add("open");
+
+            allApp.style.transition = "all 0s";
+            allApp.classList.add("lock");
+
+            hideAllClickables();
+            clock.classList.remove("hien");
+
+            boxes["box1"].style.transform = "translateX(-40px) translateY(250px) scale(1.4)";
+            boxes["box1"].style.opacity = "0.2";
+            boxes["box1"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box2"].style.transform = "translateX(-13px) translateY(250px) scale(1.4)";
+            boxes["box2"].style.opacity = "0.2";
+            boxes["box2"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box3"].style.transform = "translateX(13px) translateY(250px) scale(1.4)";
+            boxes["box3"].style.opacity = "0.2";
+            boxes["box3"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box4"].style.transform = "translateX(40px) translateY(250px) scale(1.4)";
+            boxes["box4"].style.opacity = "0.2";
+            boxes["box4"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box5"].style.transform = "translateX(120px) translateY(200px) scale(1.3)";
+            boxes["box5"].style.opacity = "0.2";
+            boxes["box5"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box6"].style.transform = "translateX(40px) translateY(170px) scale(1.3)";
+            boxes["box6"].style.opacity = "0.2";
+            boxes["box6"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box7"].style.transform = "translateX(-40px) translateY(170px) scale(1.3)";
+            boxes["box7"].style.opacity = "0.2";
+            boxes["box7"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box8"].style.transform = "translateX(-120px) translateY(200px) scale(1.3)";
+            boxes["box8"].style.opacity = "0.2";
+            boxes["box8"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box9"].style.transform = "translateX(-70px) translateY(20px) scale(1.7)";
+            boxes["box9"].style.opacity = "0.2";
+            boxes["box9"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box10"].style.transform = "translateX(70px) translateY(20px) scale(1.7)";
+            boxes["box10"].style.opacity = "0.2";
+            boxes["box10"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box11"].style.transform = "translateX(0px) translateY(-200px) scale(1.4)";
+            boxes["box11"].style.opacity = "0.2";
+            boxes["box11"].style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+        }
+
+        function unlock() {
+            islock = false;
+            ison = true;
+
+            off.classList.remove("hien");
+
+            lockscreen.style.opacity = 0;
+            lockscreen.style.transition = "none";
+            lockscreen.style.scale = 0.9;
+            lockscreen.style.pointerEvents = 'none';
+
+            wallpaper.classList.remove("lock");
+            lockclock.classList.remove("tat");
+            dateText.classList.remove("tat");
+
+            allApp.style.transition = "all 0.7s cubic-bezier(0.34, 1.56, 0.64, 1)";
+            allApp.classList.remove("lock");
+            battery2.classList.remove("close");
+            battery1.classList.remove("close");
+            battery3.classList.remove("close");
+            
+            clock.classList.add("hien");
+
+            powerbtn.classList.add("hidden");
+            setTimeout(() => {
+                Object.values(clickables).forEach((el) => {
+                    el.style.display = "flex";
+                });
+                powerbtn.classList.remove("hidden");
+            }, 440);
+            
+            setTimeout(() => {
+            boxes[`box1`].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes[`box1`].style.opacity = "1";
+            boxes[`box1`].style.transition = "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes[`box2`].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes[`box2`].style.opacity = "1";
+            boxes[`box2`].style.transition = "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes[`box3`].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes[`box3`].style.opacity = "1";
+            boxes[`box3`].style.transition = "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            
+            boxes[`box4`].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes[`box4`].style.opacity = "1";
+            boxes[`box4`].style.transition = "all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            document.querySelector(".khayapp").classList.remove("lock");
+            }, 120);
+
+            setTimeout(() => {
+            boxes["box5"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box5"].style.opacity = "1";
+            boxes["box5"].style.transition = "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            boxes["box8"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box8"].style.opacity = "1";
+            boxes["box8"].style.transition = "all 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            }, 90);
+            
+            setTimeout(() => {
+            
+            boxes["box6"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box6"].style.opacity = "1";
+            boxes["box6"].style.transition = "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box7"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box7"].style.opacity = "1";
+            boxes["box7"].style.transition = "all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            }, 60);
+
+            
+            setTimeout(() => {
+            
+            boxes["box9"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box9"].style.opacity = "1";
+            boxes["box9"].style.transition = "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+
+            boxes["box10"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box10"].style.opacity = "1";
+            boxes["box10"].style.transition = "all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            }, 30);
+            
+            setTimeout(() => {
+            boxes["box11"].style.transform = "translateX(0px) translateY(0px) scale(1)";
+            boxes["box11"].style.opacity = "1";
+            boxes["box11"].style.transition = "all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            }, 0);
+        }
+
+        unlockBtn.addEventListener('touchend', () => {
+            unlock();
+        });
+        unlockBtn.addEventListener('mouseup', () => {
+            unlock();
+        });
+
+        powerbtn.addEventListener('click', () => {
+            if (ison) {
+                wallpaper.classList.add("lock");
+
+                ison = false;
+                lockclock.classList.add("tat");
+                dateText.classList.add("tat");
+                battery2.classList.add("close");
+                battery1.classList.add("close");
+                battery3.classList.add("close");
+                thanhS1.style.pointerEvents = "none";
+                closePopup_noanim()
+            }
+            else {
+                wallpaper.classList.remove("lock");
+                ison = true;
+                lockclock.classList.remove("tat");
+                dateText.classList.remove("tat");
+                battery2.classList.remove("close");
+                battery1.classList.remove("close");
+                battery3.classList.remove("close");
+                thanhS1.style.pointerEvents = "auto";
+            }
+            lock();
+        });
+
+        lockscreen.addEventListener('click', () => {
+            wallpaper.classList.remove("lock");
+            ison = true;
+            lockclock.classList.remove("tat");
+            dateText.classList.remove("tat");
+            battery2.classList.remove("close");
+            battery1.classList.remove("close");
+            battery3.classList.remove("close");
+            thanhS1.style.pointerEvents = "auto";
+        });
+
+
+        // in setting
+        //const AboutInSetting = document.getElementById("khaysetting1");
+        //const app4 = document.getElementById("app4");
+        //const app4main = document.getElementById("app4main");
+        //
+        //AboutInSetting.addEventListener('click', () => {
+        //app4.classList.add("open");
+        //app4main.classList.add("tat");
+        //});
+
+        // -- nofication --
+        const thanhS1 = document.querySelector(".thanh-status");
+        const thanhS2 = document.querySelector(".thanh-status2");
+        const lp2 = document.querySelector(".lp2");
+        const notificationcenter = document.querySelector(".left-text-tb");
+        
+        let draggingS = false;
+        let isMoS = false
+        let startYS = 0;
+        let startXS = 0;
+        let deltaYS = 0;
+        let deltaXS = 0;
+
+
+        function updateTransformS(y, x) {
+            
+            const y2 = y;
+            if (y2 < -90) y2 = -90;
+            if(y2 > 0) y2 = 0;
+            //if (y < -50) y = -50;
+            if(y > 0) y = 0;
+            
+            const scale = 1 + -y / 60;
+
+            clock.style.transition = "all 0.2s";
+            clock.style.transform = `translateX(calc(${-y}px / 3)) translateY(${-y2}px) scale(${scale})`;
+            lp2.style.transition = "all 0.1s";
+            lp2.style.opacity = `${scale - 1} `;
+            lp2.style.zIndex = 19999;
+
+            thanhS1.style.transition = "none";
+            thanhS1.style.transform = `translateX(50%) translateY(${-y}px)`;
+        }
+
+
+
+        thanhS1.addEventListener("touchstart", (e) => {
+            if(!ison) return;
+
+            isMoS = true;
+            startYS = e.touches[0].clientY;
+            startXS = e.touches[0].clientX;
+            clock.classList.add("hien"); 
+            notificationcenter.style.transform = "translateY(0px)";
+        });
+
+        thanhS1.addEventListener("touchmove", (e) => {
+            e.preventDefault();
+            if (!isMoS) return;
+            deltaYS = startYS - e.touches[0].clientY;
+            deltaXS = e.touches[0].clientX - startXS;
+            updateTransformS(deltaYS, deltaXS);
+        }, {
+            passive: false
+        }
+        );
+
+        thanhS1.addEventListener("touchend", () => {
+            if(deltaYS < -70) monotification();
+            else dongnotification();
+            deltaYS = 0;
+            deltaXS = 0;
+            thanhS1.style.transform = `translateX(50%)`;
+        }); 
+
+        thanhS1.addEventListener("mousedown", (e) => {
+            if(!ison) return;
+
+            deltaYS = 0;
+            deltaXS = 0;
+            startYS = 0; 
+            startXS = 0;
+
+            isMoS = true;
+            draggingS = true;
+
+            startYS = e.clientY;
+            startXS = e.clientX;
+            clock.classList.add("hien"); 
+            notificationcenter.style.transform = "translateY(0px)";
+        });
+
+        window.addEventListener("mousemove", (e) => {
+            if (!draggingS || !isMoS) return;
+            deltaYS = startYS - e.clientY;
+            deltaXS = e.clientX - startXS;
+            updateTransformS(deltaYS, deltaXS);
+        });
+
+        window.addEventListener("mouseup", () => {
+            if (!draggingS || !isMoS) return;
+            draggingS = false;
+            thanhS1.style.transform = `translateX(50%)`;
+            if(deltaYS < -70) monotification();
+            else dongnotification();
+        });
+
+        lp2.addEventListener("click", ()=> {
+            dongnotification();
+        }); 
+        lp2.addEventListener("touchend", ()=> {
+            dongnotification();
+        }); 
+
+        function monotification(){
+            clock.style.transition = "all 0.5s cubic-bezier(0.23, 0.55, 0.54, 0.97)"; 
+            clock.style.transform = `translateX(25px) translateY(50px) scale(calc(1 + 50 / 40))`;
+            lp2.style.transition = "all 0s";
+            notificationcenter.classList.add("open");
+            lp2.style.opacity = `1`;
+            lp2.style.zIndex = 19999;
+            clock.classList.add("open");
+            thanhS1.style.pointerEvents = "none";
+        }
+        function dongnotification(){ 
+            clock.style.transition = "all 0.4s cubic-bezier(0.23, 0.55, 0.54, 0.97)";
+            clock.style.transform = `none`; 
+            lp2.style.transition = "all 0.3s"; 
+            lp2.style.opacity = `0`;
+            lp2.style.zIndex = 199;
+            notificationcenter.style.transform = "translateY(-60px)";
+            notificationcenter.classList.remove("open");
+            clock.classList.remove("open");
+            if(islock) clock.classList.remove("hien");
+            thanhS1.style.pointerEvents = "auto";
+        }
+        function closePopup_noanim() {
+            if (!currentOpeningBtn) return;
+            app.classList.remove("open");
+            currentOpeningBtn.style.transition = "all 0s cubic-bezier(0.25, 0.46, 0.45, 0.94)";
+            clearTimeout(autoHideClickablesTimer);
+            closing = true;
+            setTimeout(() => {
+                closing = false;
+            }, 300);
+            currentOpeningBtn.classList.remove("open");
+            setTimeout(() => {
+                currentOpeningBtn.classList.remove("hien");
+                currentOpeningBtn = null;
+                scale = 1;
+            }, 0);
+            WallPaper.classList.remove("open");
+            lp.classList.remove("open");
+            currentOpeningBtn.style.zIndex = "5";
+
+            thanh.style.transform = "translateX(-50%)";
+            allApp.style.transition = "all 0s cubic-bezier(0.23, 0.55, 0.54, 0.97)";
+            allApp.classList.remove("open");
+
+            if (nav) nav.classList.remove("open");
+            isMo = false;
+
+            Object.values(clickables).forEach((el) => {
+                el.style.display = "block";
+            });
+        }
+
+    </script>
+    
+
+
+
+
+
+  <script>
+
+  let input = '';
+
+  function press(value) {
+    if (value === 'C') {
+      input = '';
+    } else if (value === '←') {
+      input = input.slice(0, -1);
+    } else {
+      input += value;
+    }
+    document.getElementById('display').textContent = input || '0';
+  }
+
+  function calculate() {
+    try {
+      input = eval(input).toString();
+    } catch {
+      input = 'Error';
+    }
+    document.getElementById('display').textContent = input;
+  }
+
+
+    // Hiển thị loading trong 5 giây rồi ẩn
+    setTimeout(() => {
+      const loading = document.getElementById("loading-screen");
+      loading.style.opacity = "0";
+      setTimeout(() => {
+        loading.style.display = "none";
+      }, 300); // Thời gian cho hiệu ứng mờ
+    }, 5000); // 5 giây
+  </script>
+  <script>
+  const calendarGrid = document.getElementById('calendarGrid');
+  const monthYear = document.getElementById('monthYear');
+
+  const today = new Date();
+  const currentMonth = today.getMonth();
+  const currentYear = today.getFullYear();
+
+  const monthNames = [
+    "Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6",
+    "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"
+  ];
+
+  function generateCalendar(month, year) {
+    calendarGrid.innerHTML = "";
+    monthYear.textContent = `${monthNames[month]} ${year}`;
+
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    for (let i = 0; i < (firstDay === 0 ? 6 : firstDay - 1); i++) {
+      const emptyCell = document.createElement("div");
+      emptyCell.innerHTML = "";
+      calendarGrid.appendChild(emptyCell);
+    }
+
+    for (let day = 1; day <= totalDays; day++) {
+      const cell = document.createElement("div");
+      cell.textContent = day;
+
+      if (
+        day === today.getDate() &&
+        month === today.getMonth() &&
+        year === today.getFullYear()
+      ) {
+        cell.classList.add("today");
+      }
+
+      calendarGrid.appendChild(cell);
+    }
+  }
+
+  generateCalendar(currentMonth, currentYear);
+</script>
+<script>
+  function sendSms() {
+    const input = document.getElementById("smsInput");
+    const text = input.value.trim();
+    if (text === "") return;
+
+    const msg = document.createElement("div");
+    msg.className = "bubble right";
+    msg.textContent = text;
+
+    document.getElementById("messages").appendChild(msg);
+    input.value = "";
+
+    // Tự động cuộn xuống cuối
+    const box = document.getElementById("messages");
+    box.scrollTop = box.scrollHeight;
+  }
+</script>
+
+</body>
+
+</html>
